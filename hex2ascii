@@ -1,0 +1,13 @@
+#!/bin/bash
+
+addr=$1
+
+for addr in "$@"
+do
+        if [ ${addr:0:2} == "0x" ]; then
+                revaddr=${addr:8:2}${addr:6:2}${addr:4:2}${addr:2:2}
+        else
+                revaddr=${addr:6:2}${addr:4:2}${addr:2:2}${addr:0:2}
+        fi
+        echo -e "0x"$revaddr | xxd -r
+done
